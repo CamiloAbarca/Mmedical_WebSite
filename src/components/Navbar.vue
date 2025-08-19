@@ -11,7 +11,7 @@
                 <b-nav-item @click.prevent="scrollTo('services')" href="#">Servicios</b-nav-item>
                 <b-nav-item @click.prevent="scrollTo('about')" href="#">Nosotros</b-nav-item>
             </b-navbar-nav>
-            <b-button variant="danger" class="ml-lg-3 rounded-pill" @click="scrollTo('stats')">
+            <b-button variant="danger" class="ml-lg-3 rounded-pill" @click="scrollTo('contact')">
                 Contáctanos
             </b-button>
         </b-collapse>

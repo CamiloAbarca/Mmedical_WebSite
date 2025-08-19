@@ -14,7 +14,7 @@
                         monitores multiparámetros, desfibriladores y sistemas de esfuerzo, tanto en el ámbito
                         cardiológico humano como veterinario.
                     </p>
-                    <b-button variant="danger" size="lg" class="rounded-pill">Más Información</b-button>
+                    <b-button variant="danger" size="lg" class="rounded-pill" @click="scrollTo('contact')">Más Información</b-button>
                 </b-col>
 
                 <!-- Carrusel rectangular -->
@@ -31,16 +31,23 @@
 </template>
 
 <script>
+import heroBanner from "@/assets/herobanner.jpg";
 export default {
     name: "HeroComponent",
     data() {
         return {
             slides: [
-                "https://fastly.picsum.photos/id/351/200/300.jpg?hmac=OSQYmRI8IZkaMcC4ERotpBhe0AymVYajIIKPJFDzGBY",
-                "https://fastly.picsum.photos/id/910/200/300.jpg?hmac=7qhIWU6_Tq8mQzJNTsBvtWdzNIz7uvspoAuLTJ3542M",
-                "https://fastly.picsum.photos/id/552/200/300.jpg?hmac=vNqEVcCpFi9r0PtJUobWpEy8qdHJyxLm9IFELJPWKXc"
+                heroBanner
             ]
         };
+    },
+    methods: {
+        scrollTo(section) {
+            const element = document.getElementById(section);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     }
 };
 </script>
