@@ -1,7 +1,7 @@
 <template>
     <b-navbar toggleable="lg" type="light" variant="white" class="shadow-sm fixed-top">
         <b-navbar-brand @click.prevent="scrollTo('hero')" href="#">
-            <img src="../assets/logo.jpeg" alt="Logo" class="logo" height="45px" />
+            <img src="../assets/logo.jpeg" alt="Logo" class="logo" style="max-height: 45px; width: auto;" />
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

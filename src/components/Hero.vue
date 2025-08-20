@@ -14,13 +14,14 @@
                         monitores multiparámetros, desfibriladores y sistemas de esfuerzo, tanto en el ámbito
                         cardiológico humano como veterinario.
                     </p>
-                    <b-button variant="danger" size="lg" class="rounded-pill" @click="scrollTo('contact')">Más Información</b-button>
+                    <b-button variant="danger" size="lg" class="rounded-pill" @click="scrollTo('contact')">Más
+                        Información</b-button>
                 </b-col>
 
                 <!-- Carrusel rectangular -->
                 <b-col md="5" class="text-center mt-4 mt-md-0">
-                    <b-carousel id="carousel-hero" :interval="3000" controls indicators background="#fff"
-                        img-width="450" img-height="300" fade class="rounded shadow overflow-hidden">
+                    <b-carousel id="carousel-hero" :interval="3000" controls indicators background="#fff" fade
+                        class="rounded shadow overflow-hidden">
                         <b-carousel-slide v-for="(slide, index) in slides" :key="index" :img-src="slide"
                             class="d-flex align-items-center justify-content-center" />
                     </b-carousel>

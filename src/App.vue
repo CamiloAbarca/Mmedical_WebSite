@@ -1,21 +1,23 @@
 <template>
   <div>
     <Navbar />
-    <section id="hero">
-      <Hero />
-    </section>
-    <section id="services">
-      <Services />
-    </section>
-    <section id="about">
-      <About />
-    </section>
-    <section id="contact">
-      <Contact />
-    </section>
-    <section id="footer">
-      <Footer />
-    </section>
+    <div style="padding-top: 70px;">
+      <section id="hero">
+        <Hero />
+      </section>
+      <section id="services">
+        <Services />
+      </section>
+      <section id="about">
+        <About />
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
+      <section id="footer">
+        <Footer />
+      </section>
+    </div>
   </div>
 </template>
 
