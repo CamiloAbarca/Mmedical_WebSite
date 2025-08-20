@@ -47,50 +47,50 @@ export default {
                     nombre: 'Holter de Arritmia',
                     descripcion: 'Dispositivo portátil que registra la actividad eléctrica del corazón continuamente durante 24 o 48 horas para detectar arritmias cardíacas en humanos.',
                     tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/300?random=1'
+                    imagen: 'https://picsum.photos/200/200?random=1'
                 },
                 {
                     nombre: 'Holter MAPA',
                     descripcion: 'Monitor ambulatorio de presión arterial, utilizado para medir la presión arterial a intervalos regulares durante el día y la noche.',
                     tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/300?random=2'
+                    imagen: 'https://picsum.photos/200/200?random=2'
                 },
                 {
                     nombre: 'Monitores Multiparámetros',
                     descripcion: 'Equipos de alta tecnología para el seguimiento continuo de signos vitales como ECG, saturación de oxígeno, presión arterial y temperatura en pacientes humanos.',
                     tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/300?random=3'
+                    imagen: 'https://picsum.photos/200/200?random=3'
                 },
                 {
                     nombre: 'Desfibriladores',
                     descripcion: 'Dispositivos médicos que administran una descarga eléctrica al corazón para restaurar un ritmo cardíaco normal en casos de paro cardíaco o arritmias peligrosas.',
                     tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/300?random=4'
+                    imagen: 'https://picsum.photos/200/200?random=4'
                 },
                 {
                     nombre: 'Sistemas de Esfuerzo',
                     descripcion: 'Equipo de diagnóstico cardiológico que evalúa la respuesta del corazón al ejercicio físico, comúnmente usado en pruebas de esfuerzo.',
                     tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/300?random=5'
+                    imagen: 'https://picsum.photos/200/200?random=5'
                 },
                 // Ejemplos de Equipos Veterinarios
                 {
                     nombre: 'Holter Veterinario',
                     descripcion: 'Equipo de monitoreo cardíaco adaptado para el diagnóstico de arritmias en animales pequeños y grandes, como perros, gatos y caballos.',
                     tipo: 'veterinario',
-                    imagen: 'https://picsum.photos/200/300?random=6'
+                    imagen: 'https://picsum.photos/200/200?random=6'
                 },
                 {
                     nombre: 'Desfibriladores Veterinarios',
                     descripcion: 'Versión especializada de desfibriladores diseñada para restaurar el ritmo cardíaco de animales en situaciones de emergencia.',
                     tipo: 'veterinario',
-                    imagen: 'https://picsum.photos/200/300?random=7'
+                    imagen: 'https://picsum.photos/200/200?random=7'
                 },
                 {
                     nombre: 'Monitores Multiparámetros Veterinarios',
                     descripcion: 'Monitores vitales con sensores y software adaptados para medir signos vitales en diferentes especies animales durante cirugías o recuperación.',
                     tipo: 'veterinario',
-                    imagen: 'https://picsum.photos/200/300?random=8'
+                    imagen: 'https://picsum.photos/200/200?random=8'
                 }
             ]
         };
