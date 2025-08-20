@@ -7,7 +7,8 @@
 
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-                <b-nav-item @click.prevent="scrollTo('hero')" href="#">Inicio</b-nav-item>
+                <b-nav-item to="/">Inicio</b-nav-item>
+                <b-nav-item to="/equipos">Equipos</b-nav-item>
                 <b-nav-item @click.prevent="scrollTo('services')" href="#">Servicios</b-nav-item>
                 <b-nav-item @click.prevent="scrollTo('about')" href="#">Nosotros</b-nav-item>
             </b-navbar-nav>
@@ -24,10 +25,14 @@ export default {
     name: 'NavbarComponent',
     methods: {
         scrollTo(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                const top = el.getBoundingClientRect().top + window.scrollY - 70; // ajuste por navbar fijo
-                window.scrollTo({ top, behavior: "smooth" });
+            if (this.$route.path !== '/') {
+                this.$router.push({ path: '/', hash: `#${id}` });
+            } else {
+                const el = document.getElementById(id);
+                if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY - 70;
+                    window.scrollTo({ top, behavior: "smooth" });
+                }
             }
         }
     }
