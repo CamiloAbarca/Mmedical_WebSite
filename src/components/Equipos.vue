@@ -3,31 +3,38 @@
         <b-container>
             <h1 class="text-center mb-5" style="color: #007bff;">Nuestros Equipos</h1>
 
+            <!-- Botones de filtro -->
             <div class="d-flex justify-content-center mb-4">
                 <b-button-group>
                     <b-button @click="filtro = 'todos'" :variant="filtro === 'todos' ? 'primary' : 'outline-primary'"
-                        class="mr-2">Todos</b-button>
+                        class="mr-2">
+                        Todos
+                    </b-button>
                     <b-button @click="filtro = 'humano'" :variant="filtro === 'humano' ? 'primary' : 'outline-primary'"
-                        class="mr-2">Equipos Humanos</b-button>
+                        class="mr-2">
+                        Equipos Humanos
+                    </b-button>
                     <b-button @click="filtro = 'veterinario'"
-                        :variant="filtro === 'veterinario' ? 'primary' : 'outline-primary'">Equipos
-                        Veterinarios</b-button>
+                        :variant="filtro === 'veterinario' ? 'primary' : 'outline-primary'">
+                        Equipos Veterinarios
+                    </b-button>
                 </b-button-group>
             </div>
 
+            <!-- Cards de equipos -->
             <b-row class="justify-content-center">
-                <b-col md="4" v-for="(equipo, i) in equiposFiltrados" :key="i" class="mb-4">
-                    <b-card :title="equipo.nombre" :img-src="equipo.imagen" img-alt="Imagen del equipo" img-top
-                        class="h-100 shadow-sm" style="border: none;">
-                        <b-card-text>
-                            {{ equipo.descripcion }}
-                        </b-card-text>
+                <b-col md="4" v-for="equipo in equiposFiltrados" :key="equipo.id" class="mb-4">
+                    <b-card :title="equipo.titulo" :img-src="equipo.img" img-alt="Imagen del equipo" img-top
+                        class="h-100 shadow-sm equipo-card" style="border: none;">
+                        <b-card-text>{{ equipo.detalle }}</b-card-text>
                         <template #footer>
-                            <small class="text-muted">Categoría: {{ equipo.tipo === 'humano' ? 'Humano' : 'Veterinario'
-                                }}</small>
+                            <small class="text-muted">
+                                Categoría: {{ equipo.tipo === 'humano' ? 'Humano' : 'Veterinario' }}
+                            </small>
                         </template>
-
-                        <b-button variant="info" class="mt-3" @click="verMas(equipo)">Ver más</b-button>
+                        <b-button variant="info" class="mt-3" @click="verMas(equipo)">
+                            Ver más
+                        </b-button>
                     </b-card>
                 </b-col>
             </b-row>
@@ -36,85 +43,69 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'EquiposComponent',
     data() {
         return {
-            filtro: 'todos', // Estado inicial del filtro
-            equipos: [
-                // Ejemplos de Equipos Humanos
-                {
-                    nombre: 'Holter de Arritmia',
-                    descripcion: 'Dispositivo portátil que registra la actividad eléctrica del corazón continuamente durante 24 o 48 horas para detectar arritmias cardíacas en humanos.',
-                    tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/200?random=1'
-                },
-                {
-                    nombre: 'Holter MAPA',
-                    descripcion: 'Monitor ambulatorio de presión arterial, utilizado para medir la presión arterial a intervalos regulares durante el día y la noche.',
-                    tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/200?random=2'
-                },
-                {
-                    nombre: 'Monitores Multiparámetros',
-                    descripcion: 'Equipos de alta tecnología para el seguimiento continuo de signos vitales como ECG, saturación de oxígeno, presión arterial y temperatura en pacientes humanos.',
-                    tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/200?random=3'
-                },
-                {
-                    nombre: 'Desfibriladores',
-                    descripcion: 'Dispositivos médicos que administran una descarga eléctrica al corazón para restaurar un ritmo cardíaco normal en casos de paro cardíaco o arritmias peligrosas.',
-                    tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/200?random=4'
-                },
-                {
-                    nombre: 'Sistemas de Esfuerzo',
-                    descripcion: 'Equipo de diagnóstico cardiológico que evalúa la respuesta del corazón al ejercicio físico, comúnmente usado en pruebas de esfuerzo.',
-                    tipo: 'humano',
-                    imagen: 'https://picsum.photos/200/200?random=5'
-                },
-                // Ejemplos de Equipos Veterinarios
-                {
-                    nombre: 'Holter Veterinario',
-                    descripcion: 'Equipo de monitoreo cardíaco adaptado para el diagnóstico de arritmias en animales pequeños y grandes, como perros, gatos y caballos.',
-                    tipo: 'veterinario',
-                    imagen: 'https://picsum.photos/200/200?random=6'
-                },
-                {
-                    nombre: 'Desfibriladores Veterinarios',
-                    descripcion: 'Versión especializada de desfibriladores diseñada para restaurar el ritmo cardíaco de animales en situaciones de emergencia.',
-                    tipo: 'veterinario',
-                    imagen: 'https://picsum.photos/200/200?random=7'
-                },
-                {
-                    nombre: 'Monitores Multiparámetros Veterinarios',
-                    descripcion: 'Monitores vitales con sensores y software adaptados para medir signos vitales en diferentes especies animales durante cirugías o recuperación.',
-                    tipo: 'veterinario',
-                    imagen: 'https://picsum.photos/200/200?random=8'
-                }
-            ]
+            filtro: 'todos',
+            equipos: []
         };
     },
     computed: {
         equiposFiltrados() {
-            if (this.filtro === 'todos') {
-                return this.equipos;
-            }
-            return this.equipos.filter(equipo => equipo.tipo === this.filtro);
+            if (this.filtro === 'todos') return this.equipos;
+            return this.equipos.filter(e => e.tipo === this.filtro);
         }
     },
     methods: {
+        async cargarEquipos() {
+            try {
+                const response = await axios.get('https://mmedical.cl/apiCatalogo/equipos');
+                this.equipos = response.data.map(equipo => ({
+                    ...equipo,
+                    img: `https://mmedical.cl/uploads/${equipo.img}`,
+                    pdf: equipo.pdf ? `https://mmedical.cl/uploads/${equipo.pdf}` : null,
+                    tipo: equipo.tipo.toLowerCase() // normalizamos tipo
+                }));
+            } catch (error) {
+                console.error('Error al cargar los equipos:', error);
+            }
+        },
         verMas(equipo) {
-            // Lógica para el botón "Ver más"
-            // Por ejemplo, podrías redirigir a una página de detalles o mostrar un modal
-            alert(`Has hecho clic en "Ver más" para el equipo: ${equipo.nombre}`);
+            if (equipo.pdf) {
+                window.open(equipo.pdf, '_blank');
+            } else {
+                alert('No hay PDF disponible para este equipo.');
+            }
         }
+    },
+    created() {
+        this.cargarEquipos();
     }
 };
 </script>
 
 <style scoped>
+/* Imagenes uniformes */
+.equipo-card img {
+    height: 200px;
+    width: 50%;
+    object-fit: cover;
+}
+
+/* Hover para cards */
+.equipo-card {
+    transition: transform 0.3s;
+}
+
+.equipo-card:hover {
+    transform: scale(1.05);
+}
+
+/* Fondo de sección */
 .equipos {
-    min-height: 80vh;
+    background-color: #f8f9fa;
 }
 </style>
